@@ -4,6 +4,7 @@ const authRouter = express.Router();
 const bcryptjs = require('bcryptjs');
 const User = require('../models/user_model');
 const mongoose = require('mongoose');
+const { tokenKey } = require('../commons');
 authRouter.post('/signup', async (req, res) => {
     try {
         const { username, email, password } = req.body;
@@ -20,7 +21,7 @@ authRouter.post('/signup', async (req, res) => {
         user = await user.save();
         // getting the token now;
         console.log(user);
-        const token = jwt.sign({ id: user._id }, 'x-auth-token')
+        const token = jwt.sign({ id: user._id }, tokenKey);
         res.json({ ...user._doc, token });
     } catch (error) {
         res.status(500).json({ err: error.message });

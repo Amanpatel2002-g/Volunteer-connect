@@ -16,6 +16,12 @@ getHeaderWithToken(String token){
 }
 
 
+class Keys {
+  static final ngosignUpKey = GlobalKey<FormState>();
+  static final ngoSignInKey = GlobalKey<FormState>();
+  static final userSignInKey = GlobalKey<FormState>();
+  static final userSignUpKey = GlobalKey<FormState>();
+}
 
 void showSnackbar(BuildContext context, String text) {
   ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(text)));

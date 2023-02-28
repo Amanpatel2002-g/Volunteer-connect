@@ -1,20 +1,40 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:volunteers_connect/auth/screens/ngo_registration_form.dart';
+import 'package:volunteers_connect/auth/services/ngo_auth_services.dart';
+import 'package:volunteers_connect/auth/widgets/loginButton.dart';
+import 'package:volunteers_connect/common/utils.dart';
+import 'package:volunteers_connect/home/screens/ngo_Home_Screen.dart';
+import 'package:volunteers_connect/providers/ngo_provider.dart';
 
 import '../../common/color_file.dart';
 import '../widgets/custom_text_input_feild.dart';
 import '../widgets/or_divider.dart';
 
-class NGOAuthScreen extends StatelessWidget {
+class NGOAuthScreen extends ConsumerWidget {
   NGOAuthScreen({super.key});
-    // ignore: non_constant_identifier_names
-    final TextEditingController NGONameTextEditingController =
+  // ignore: non_constant_identifier_names
+  final TextEditingController NGOPasswordTextEditingController =
       TextEditingController();
   // ignore: non_constant_identifier_names
   final TextEditingController NGOUniqueVCNumberTextEditingController =
       TextEditingController();
+  static const String routeName = '/NGOAuthScreen';
+  final NGOAuthServies _ngoAuthServies = NGOAuthServies();
+  void navigateToNGOHomeScreen(WidgetRef ref, BuildContext context) {
+    _ngoAuthServies
+        .ngoSignIn(
+            uniqueId: NGOUniqueVCNumberTextEditingController.text,
+            password: NGOPasswordTextEditingController.text,
+            context: context,
+            ref: ref)
+        .then((_) => Navigator.of(context).pushNamedAndRemoveUntil(
+            NGOHomeScreen.routeName, (route) => false));
+  }
+
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       body: SingleChildScrollView(
         child: Container(
@@ -46,7 +66,7 @@ class NGOAuthScreen extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 15),
                   child: Text(
-                    "Sign in to VolunteersConnect.com with UniqueVCNumber",
+                    "Sign in to VolunteersConnect.com with name and password",
                     textAlign: TextAlign.center,
                     style: TextStyle(
                         color: HexColor("#1d4980"),
@@ -57,20 +77,54 @@ class NGOAuthScreen extends StatelessWidget {
                 const SizedBox(
                   height: 20,
                 ),
-                CustomInputTextField(
-                  textEditingController: NGONameTextEditingController,
-                    labelText: "NGO unique Name",
-                    inputHintText: "Enter NGO Unique Name"),
-                const SizedBox(
-                  height: 20,
+                Form(
+                  key: Keys.ngoSignInKey,
+                  child: Column(
+                    children: [
+                      CustomInputTextField(
+                        textEditingController:
+                            NGOUniqueVCNumberTextEditingController,
+                        labelText: "NGO unique ID",
+                        inputHintText: "Enter NGO Unique ID",
+                        validate: (value) {
+                          if (value == null || value.isEmpty) {
+                            return "Please type the NGO UniqueId";
+                          }
+                          return null;
+                        },
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      CustomInputTextField(
+                        textEditingController:
+                            NGOPasswordTextEditingController,
+                        labelText: "password",
+                        inputHintText: "Enter your password",
+                        validate: (value) {
+                          if (value == null || value.isEmpty) {
+                            return "Please create the NGO's Password";
+                          }
+                          if (value.length < 6) {
+                            return "please create a password of lenght greater than 5";
+                          }
+                          return null;
+                        },
+                      ),
+                    ],
+                  ),
                 ),
-                CustomInputTextField(
-                  textEditingController: NGOUniqueVCNumberTextEditingController,
-                    labelText: "UniqueVCNumber",
-                    inputHintText: "Enter your UniqueVC Number"),
                 const SizedBox(
                   height: 10,
                 ),
+                const SizedBox(
+                  height: 20,
+                ),
+                LoginButton(ontap: () {
+                  if (Keys.ngoSignInKey.currentState!.validate()) {
+                    navigateToNGOHomeScreen(ref, context);
+                  }
+                }),
                 const SizedBox(
                   height: 20,
                 ),
@@ -87,12 +141,18 @@ class NGOAuthScreen extends StatelessWidget {
                 const SizedBox(
                   height: 15,
                 ),
-                const Text(
-                  "Register here",
-                  style: TextStyle(
-                      color: Colors.red,
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold),
+                // const Text(
+                //   "Register here",
+                //   style: TextStyle(
+                //       color: Colors.red,
+                //       fontSize: 20,
+                //       fontWeight: FontWeight.bold,
+                //       decoration: TextDecoration.underline),
+                // )
+                LoginButton(
+                  mainText: "Register Here",
+                  ontap: () => Navigator.of(context)
+                      .pushNamed(NGORegistrationPage.routeName),
                 )
               ],
             ),

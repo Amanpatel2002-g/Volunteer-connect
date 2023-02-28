@@ -18,6 +18,7 @@ class AuthService {
 
   void volsignUpService(String username, String email, String password,
       BuildContext context, WidgetRef ref) async {
+        final userprovider = ref.watch((userProvider.notifier));
     final UserModel userModel = UserModel(
         id: '',
         username: username,
@@ -26,12 +27,13 @@ class AuthService {
         token: '');
     http.Response res = await http.post(Uri.parse('$uri/api/signup'),
         headers: httpHeader, body: userModel.toJson());
+    // ignore: use_build_context_synchronously
     httpErrorHandling(
         context: context,
         response: res,
         onSuccess: (() {
           final UserModel user = UserModel.fromJson(res.body);
-          ref.watch((userProvider.notifier)).setUser(user);
+          userprovider.setUser(user);
           LocalStorage.setString(tokenKey, user.token);
           Navigator.pushNamed(context, DefaultPage.routeName);
         }));
@@ -42,8 +44,9 @@ class AuthService {
     UserModel user = UserModel(
         username: '', email: email, password: password, id: '', token: '');
 
-    http.Response res = await http.post(Uri.parse('$uri/api/signin'),
+    http.Response res = await http.post(Uri.parse('$uri/api/user/signin'),
         headers: httpHeader, body: user.toJson());
+    // ignore: use_build_context_synchronously
     httpErrorHandling(
         context: context,
         response: res,
@@ -60,8 +63,9 @@ class AuthService {
     if (token == null) {
       return;
     }
-    http.Response res = await http.get(Uri.parse('$uri/api/verifyToken'),
+    http.Response res = await http.get(Uri.parse('$uri/api/user/verifyToken'),
         headers: getHeaderWithToken(token));
+    // ignore: use_build_context_synchronously
     httpErrorHandling(
         context: context,
         response: res,

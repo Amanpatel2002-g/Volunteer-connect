@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'package:volunteers_connect/auth/services/auth_service.dart';
+import 'package:volunteers_connect/auth/services/user_auth_service.dart';
 import 'package:volunteers_connect/auth/widgets/custom_text_input_feild.dart';
 import 'package:volunteers_connect/auth/widgets/loginButton.dart';
 import 'package:volunteers_connect/auth/widgets/login_with_google_button.dart';

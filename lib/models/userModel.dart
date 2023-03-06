@@ -1,6 +1,6 @@
+// ignore: file_names
 import 'dart:convert';
 
-// import 'dart:convert';
 
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 class UserModel {
@@ -9,6 +9,7 @@ class UserModel {
   final String password;
   final String id;
   final String token;
+  String?profilePic;
   String? address;
   String? mobile;
   int? age;
@@ -19,6 +20,7 @@ class UserModel {
     required this.password,
     required this.id,
     required this.token,
+    this.profilePic,
     this.address,
     this.mobile,
     this.age,
@@ -36,6 +38,7 @@ class UserModel {
       'mobile': mobile,
       'age': age,
       'school': school,
+      'profilePic': profilePic
     };
   }
 
@@ -50,6 +53,7 @@ class UserModel {
       mobile: map['mobile'] != null ? map['mobile'] as String : null,
       age: map['age'] != null ? map['age'] as int : null,
       school: map['school'] != null ? map['school'] as String : null,
+      profilePic: map['profilePic']!=null?map['profilePic'] as String :null,
     );
   }
 
@@ -68,6 +72,7 @@ class UserModel {
     String? mobile,
     int? age,
     String? school,
+    String ? profilePic
   }) {
     return UserModel(
       username: username ?? this.username,
@@ -79,6 +84,7 @@ class UserModel {
       mobile: mobile ?? this.mobile,
       age: age ?? this.age,
       school: school ?? this.school,
+      profilePic: profilePic??this.profilePic,
     );
   }
 

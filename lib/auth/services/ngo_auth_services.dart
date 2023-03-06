@@ -49,9 +49,11 @@ class NGOAuthServies {
     // ignore: use_build_context_synchronously
     httpErrorHandling(
         context: context,
-        response: res,
+        response: res, 
         onSuccess: () {
           ref.watch(NgoProvider.notifier).setNGO(NGOModel.fromJson(res.body));
+          NGOModel ngoModel = ref.watch(NgoProvider.notifier).ngo!;
+          LocalStorage.setString(tokenKey, ngoModel.token);
         });
   }
 }

@@ -41,6 +41,12 @@ dependencies:
   http: ^0.13.5
   shared_preferences: ^2.0.15
   country_state_city_picker: ^1.2.8
+  floating_bottom_navigation_bar: ^1.5.2
+  font_awesome_flutter: ^10.4.0
+  file_picker: ^5.2.2
+  cloudinary_public: ^0.20.0
+  intl: ^0.18.0
+  google_fonts: ^4.0.3
 
 dev_dependencies:
   flutter_test:

@@ -5,8 +5,7 @@ import 'package:volunteers_connect/auth/screens/ngo_registration_form.dart';
 import 'package:volunteers_connect/auth/services/ngo_auth_services.dart';
 import 'package:volunteers_connect/auth/widgets/loginButton.dart';
 import 'package:volunteers_connect/common/utils.dart';
-import 'package:volunteers_connect/home/screens/ngo_Home_Screen.dart';
-import 'package:volunteers_connect/providers/ngo_provider.dart';
+import 'package:volunteers_connect/home/screens/ngo_home.dart';
 
 import '../../common/color_file.dart';
 import '../widgets/custom_text_input_feild.dart';
@@ -30,7 +29,7 @@ class NGOAuthScreen extends ConsumerWidget {
             context: context,
             ref: ref)
         .then((_) => Navigator.of(context).pushNamedAndRemoveUntil(
-            NGOHomeScreen.routeName, (route) => false));
+            NGOMainHomeScreen.routeName, (route) => false));
   }
 
   @override
@@ -38,8 +37,6 @@ class NGOAuthScreen extends ConsumerWidget {
     return Scaffold(
       body: SingleChildScrollView(
         child: Container(
-          height: MediaQuery.of(context).size.height,
-          width: MediaQuery.of(context).size.width,
           alignment: Alignment.center,
           padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 100),
           child: Card(
@@ -49,6 +46,7 @@ class NGOAuthScreen extends ConsumerWidget {
               borderRadius: BorderRadius.circular(15.0),
             ),
             child: Column(
+              mainAxisSize: MainAxisSize.min,
               children: [
                 const SizedBox(
                   height: 40,
@@ -97,10 +95,10 @@ class NGOAuthScreen extends ConsumerWidget {
                         height: 20,
                       ),
                       CustomInputTextField(
-                        textEditingController:
-                            NGOPasswordTextEditingController,
+                        textEditingController: NGOPasswordTextEditingController,
                         labelText: "password",
                         inputHintText: "Enter your password",
+                        isobscureText: true,
                         validate: (value) {
                           if (value == null || value.isEmpty) {
                             return "Please create the NGO's Password";
@@ -133,14 +131,14 @@ class NGOAuthScreen extends ConsumerWidget {
                   height: 15,
                 ),
                 Text(
-                  "Haven't registered  your NGO on Volunteer Connect !",
+                  "Haven't registered  your NGO !",
                   textAlign: TextAlign.center,
                   style:
                       TextStyle(color: wordColor, fontWeight: FontWeight.bold),
                 ),
-                const SizedBox(
-                  height: 15,
-                ),
+                // const SizedBox(
+                //   height: 15,
+                // ),
                 // const Text(
                 //   "Register here",
                 //   style: TextStyle(
@@ -153,6 +151,9 @@ class NGOAuthScreen extends ConsumerWidget {
                   mainText: "Register Here",
                   ontap: () => Navigator.of(context)
                       .pushNamed(NGORegistrationPage.routeName),
+                ),
+                const SizedBox(
+                  height: 15,
                 )
               ],
             ),

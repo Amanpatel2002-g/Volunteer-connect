@@ -1,3 +1,4 @@
+// ignore: file_names
 import 'package:flutter/material.dart';
 import 'package:volunteers_connect/auth/screens/ngo_auth_screen.dart';
 

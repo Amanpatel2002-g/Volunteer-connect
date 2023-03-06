@@ -8,6 +8,12 @@ import 'package:volunteers_connect/auth/services/user_auth_service.dart';
 import 'package:volunteers_connect/common/default_screen.dart';
 import 'package:volunteers_connect/common/intro_page.dart';
 import 'package:volunteers_connect/common/routes.dart';
+import 'package:volunteers_connect/home/screens/ngo_add_post_page.dart';
+import 'package:volunteers_connect/home/screens/ngo_post_screen.dart';
+import 'package:volunteers_connect/home/screens/user_connect_screen.dart';
+import 'package:volunteers_connect/home/screens/user_home_screen.dart';
+import 'package:volunteers_connect/home/widgets/complete_post_widget.dart';
+import 'package:volunteers_connect/home/widgets/post_widget.dart';
 import 'package:volunteers_connect/providers/user_provider.dart';
 
 void main() {
@@ -42,7 +48,7 @@ class _MyAppState extends ConsumerState<MyApp> {
       debugShowCheckedModeBanner: false,
       onGenerateRoute: (settings) => generateRoute(settings),
       title: 'Flutter Demo',
-      theme: ThemeData.light(),
+      theme: ThemeData.light(useMaterial3: true),
       home: VolAuthScreen(),
       // home: Builder(
       //   builder: (BuildContext context) {

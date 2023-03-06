@@ -16,7 +16,7 @@ class VolAuthScreen extends ConsumerWidget {
       TextEditingController();
   final TextEditingController _passwordTextEditingController =
       TextEditingController();
-  final _key = GlobalKey<FormState>();
+  static const String routeName = '/VolAuthSignInScreen';
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
@@ -110,11 +110,11 @@ class VolAuthScreen extends ConsumerWidget {
                   ),
                 ),
                 const SizedBox(
-                  height: 70,
+                  height: 30,
                 ),
                 LoginButton(
                   ontap: () {
-                    if (Keys.ngoSignInKey.currentState!.validate()) {
+                    if (Keys.userSignInKey.currentState!.validate()) {
                       AuthService().volsignInService(
                           _emailTextEditingController.text,
                           _passwordTextEditingController.text,

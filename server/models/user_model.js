@@ -9,13 +9,9 @@ const userSchema = mongoose.Schema({
         type:String, 
         required:true,
         trim:true,
-        validator:{
-            validator: (value)=>{
-                const re = /^\s*[\w\-\+_]+(\.[\w\-\+_]+)*\@[\w\-\+_]+\.[\w\-\+_]+(\.[\w\-\+_]+)*\s*$/;
-                return value.match(re);
-            },
-            message:"please enter the valid email property"
-        }
+    },
+    profileUrl:{
+        type:String,
     },
     password:{
         type:String,

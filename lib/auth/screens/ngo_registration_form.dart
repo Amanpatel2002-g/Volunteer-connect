@@ -6,7 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:volunteers_connect/auth/services/ngo_auth_services.dart';
 import 'package:volunteers_connect/auth/widgets/loginButton.dart';
-import 'package:volunteers_connect/home/screens/ngo_Home_Screen.dart';
+import 'package:volunteers_connect/home/screens/ngo_home.dart';
 import '../widgets/custom_text_input_feild.dart';
 
 class NGORegistrationPage extends ConsumerStatefulWidget {
@@ -135,7 +135,7 @@ class _NGORegistrationPageState extends ConsumerState<NGORegistrationPage> {
                             context: context,
                             ref: ref);
                         Navigator.of(context).pushNamedAndRemoveUntil(
-                            NGOHomeScreen.routeName, (route) => false);
+                            NGOMainHomeScreen.routeName, (route) => false);
                       }
                     },
                   )

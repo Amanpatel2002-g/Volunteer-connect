@@ -1,5 +1,5 @@
 # volunteers_connect
-![volunteer connect](https://drive.google.com/file/d/1VJ1MNtQlqrQfqonGc0Nu2ULy-bzvxG1b/view?usp=sharing)
+<img src="https://drive.google.com/file/d/1VJ1MNtQlqrQfqonGc0Nu2ULy-bzvxG1b/view?usp=sharing" alt= “” width="60" height="80">
 
 
 A new Flutter project.

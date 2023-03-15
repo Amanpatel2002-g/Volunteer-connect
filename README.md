@@ -2,7 +2,7 @@
 ![volunteer connect](https://raw.githubusercontent.com/Amanpatel2002-g/Volunteer-connect/master/assets/images/logo-black.png)
 
 
-This project belongs to ![Aman Patel](https://github.com/Amanpatel2002-g)
+This project belongs to [Aman Patel](https://github.com/Amanpatel2002-g)
 
 ## Getting Started
 

@@ -2,17 +2,10 @@
 ![volunteer connect](https://raw.githubusercontent.com/Amanpatel2002-g/Volunteer-connect/master/assets/images/logo-black.png)
 
 
-A new Flutter project.
+This project belongs to ![Aman Patel](https://github.com/Amanpatel2002-g)
 
 ## Getting Started
 
 This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+> Want to use this project. Clone this into your system and run flutter upgrade before using it in order to download the pubspec.lock

@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:volunteers_connect/auth/screens/vol_auth_screen_sign_in.dart';
 import 'package:volunteers_connect/common/custom_appbar.dart';
 import 'package:volunteers_connect/home/screens/user_ngo_apply_screen.dart';
 import 'package:volunteers_connect/home/services/ngo_job_services.dart';
 import 'package:volunteers_connect/models/job_model.dart';
 import 'package:volunteers_connect/models/userModel.dart';
+import 'package:volunteers_connect/models/volunteers_applied.dart';
 
 // ignore: must_be_immutable
 class NGOseeingVolunteersApplied extends ConsumerWidget {
@@ -12,11 +14,11 @@ class NGOseeingVolunteersApplied extends ConsumerWidget {
   String jobId;
   NGOJobServices ngoJobServices = NGOJobServices();
   static const String routeName = '/NGOseeingVolunteersApplied';
-  @override
+  @override 
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: customAppBar(context),
-      body: FutureBuilder<List<UserModel>>(
+      body: FutureBuilder<List<VolunteerApplied>>(
         future: ngoJobServices.getVolunteersApplied(jobId, context),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
@@ -32,7 +34,7 @@ class NGOseeingVolunteersApplied extends ConsumerWidget {
           return ListView.builder(
               itemCount: snapshot.data!.length,
               itemBuilder: (context, index) {
-                UserModel user = snapshot.data![index];
+                VolunteerApplied user = snapshot.data![index];
                 print(snapshot.data!.length);
                 return Card(
                   margin: const EdgeInsets.only(left: 10, right: 10, top: 10),

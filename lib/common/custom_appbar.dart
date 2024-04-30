@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:volunteers_connect/common/search_text_field.dart';
 import 'package:volunteers_connect/home/screens/ngo_profile_page.dart';
 
+
 TextEditingController _textEditingController = TextEditingController();
 AppBar customAppBar(BuildContext context) {
   return AppBar(

@@ -27,9 +27,9 @@ class _UserHomeScreenState extends State<UserHomeScreen> {
   // ignore: unused_field
   static const String routeName = '/UserHomeScreen';
   static final List<Widget> _widgetOptions = [
-    UserPostScreen(),
+    const UserPostScreen(),
     UserConnectScreen(),
-    UserSettingPage(),
+    const UserSettingPage(),
   ];
 
   void _onItemTapped(int index) {
@@ -41,7 +41,7 @@ class _UserHomeScreenState extends State<UserHomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: _selectedIndex == 0 || _selectedIndex == 1
+        appBar: _selectedIndex != 2
             ? customAppBar(context)
             : null,
         body: Center(

@@ -87,5 +87,5 @@ class _NGOMainHomeScreenState extends State<NGOMainHomeScreen> {
             ),
           ),
         ));
-  }
+  } 
 }

@@ -51,6 +51,7 @@ jobRouter.post('/applyforNGO', async (req, res) => {
 jobRouter.get('/getJobByNgo/:ngoId', async (req, res) => {
     // would get the list of jobs released by ngo
     try {
+        console.log("get the jobs by this ngo");
         let ngoId = req.params.ngoId;
         ngoId = ngoId.slice(1);
         console.log(ngoId);
@@ -78,6 +79,7 @@ jobRouter.get('/getAppliedPeople/:jobId', async (req, res) => {
             volunteers.push(vol);
         }
         console.log(volunteers);
+        console.log("printing volunteers above")
         res.json(volunteers);
     } catch (error) {
         console.log(error.message);

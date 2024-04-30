@@ -29,7 +29,7 @@ class _SearchTextFieldState extends State<SearchTextField> {
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
         Container(
-          width: 300,
+          width: 290,
           height: 40,
           padding: const EdgeInsets.only(bottom: 1),
           child: TextFormField(

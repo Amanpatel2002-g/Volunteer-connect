@@ -20,12 +20,12 @@ class VolAuthScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Container(
-          height: MediaQuery.of(context).size.height,
-          width: MediaQuery.of(context).size.width,
-          alignment: Alignment.center,
-          padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 100),
+      body: Container(
+        height: MediaQuery.of(context).size.height,
+        width: MediaQuery.of(context).size.width,
+        alignment: Alignment.center,
+        padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 100),
+        child: SingleChildScrollView(
           child: Card(
             elevation: 5,
             color: HexColor("#ffffff"),

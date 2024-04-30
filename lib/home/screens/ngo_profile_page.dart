@@ -35,11 +35,10 @@ class _NGOProfilePageState extends ConsumerState<NGOProfilePage> {
             'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80'),
       );
   Widget buildProfileImageMethod() => CircleAvatar(
-        radius: profileHeight / 2,
-        backgroundColor: Colors.grey,
-        child: Image.network(
-            'https://png.pngtree.com/png-vector/20191101/ourmid/pngtree-cartoon-color-simple-male-avatar-png-image_1934459.jpg'),
-      );
+      radius: profileHeight / 2,
+      backgroundColor: Colors.grey,
+      child: Image.asset(
+          'assets/images/pngtree-cartoon-color-simple-male-avatar-png-image_1934459.jpg'));
 
   Widget buildTop() {
     final double top = coverHeight - profileHeight / 2;

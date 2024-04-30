@@ -37,7 +37,7 @@ class AuthService {
           userprovider.setUser(user);
           LocalStorage.setString(tokenKey, user.token);
           Navigator.pushNamedAndRemoveUntil(
-              context, UserConnectScreen.routeName, (route) => false);
+              context, UserHomeScreen.routeName, (route) => false);
         }));
   }
 

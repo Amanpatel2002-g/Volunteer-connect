@@ -8,6 +8,7 @@ import 'package:volunteers_connect/home/screens/user_connect_screen.dart';
 import 'package:volunteers_connect/home/screens/user_home_screen.dart';
 import 'package:volunteers_connect/models/job_model.dart';
 import 'package:volunteers_connect/models/userModel.dart';
+import 'package:volunteers_connect/models/volunteers_applied.dart';
 
 import '../../common/utils.dart';
 
@@ -99,24 +100,59 @@ class NGOJobServices {
             jobs.add(Job.fromJson(jsonEncode(jsonDecode(res.body)[i])));
           }
         });
+    print(jobs);
     return jobs;
   }
 
-  Future<List<UserModel>> getVolunteersApplied(
+  Future<List<VolunteerApplied>> getVolunteersApplied(
       String jobId, BuildContext context) async {
     http.Response res =
         await http.get(Uri.parse('$uri/api/getAppliedPeople/:$jobId'));
-    List<UserModel> jobs = [];
+    List<VolunteerApplied> jobs = [];
     // ignore: use_build_context_synchronously
-    httpErrorHandling(
-        context: context,
-        response: res,
-        onSuccess: () {
-          print(jsonDecode(res.body).length);
+    int sc = res.statusCode;
+    print("The status code is $sc");
+    switch (res.statusCode) {
+      case 200:
+        try{
+          VolunteerApplied x = VolunteerApplied.fromJson(jsonEncode(jsonDecode(res.body)[0]));
+          print("The length from get Volunteers Applied is");
+          print("the jsondecode version is here $x");
           for (int i = 0; i < jsonDecode(res.body).length; i++) {
-            jobs.add(UserModel.fromJson(jsonEncode(jsonDecode(res.body)[i])));
+            jobs.add(VolunteerApplied.fromJson(jsonEncode(jsonDecode(res.body)[i])));
+            print("camw here");
           }
-        });
+          print("jobs are here $jobs");
+        }
+        catch(e, s){
+          print('Exception details:\n $e');
+        }
+        break;
+
+      case 500:
+        // debugPrint(jsonDecode(response.body));
+        debugPrint("This is from http ErrorHandling case:500\n");
+
+        showSnackbar(context, jsonDecode(res.body)["err"]);
+        break;
+      default:
+        debugPrint("This is from http ErrorHandling case:default\n");
+        debugPrint(res.body);
+        showSnackbar(context, res.body);
+    }
+    // httpErrorHandling(
+    //     context: context,
+    //     response: res,
+    //     onSuccess: () {
+    //       print("The length from get Volunteers Applied is");
+    //       print(jsonDecode(res.body));
+    //       for (int i = 0; i < jsonDecode(res.body).length; i++) {
+    //         print("camw here");
+    //         jobs.add(UserModel.fromJson(jsonEncode(jsonDecode(res.body)[i])));
+    //       }
+    //       print("volunteer applied on the ");
+    //       print(jobs);
+    //     });
     return jobs;
   }
 }
